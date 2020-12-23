@@ -9,37 +9,36 @@ class App{
         this.ui = new UI;
         this.listTask = document.querySelector('.list-group');
         this.form = document.querySelector('.form');
-        this.input = document.querySelector('.form-control').value;
+        this.taskInput = document.querySelector('.form-control');
 
 
     }
     loadpage(){
         this.ui.renderHtml(); 
-        this.listTask.addEventListener('click', this.iconChange);
-        this.form.addEventListener('submit', this.addTask);
-
+        this.listTask.addEventListener('click', this.iconClick);
+        this.form.addEventListener('submit', this.addTask)
     }
 
     addTask(e){
         e.preventDefault();
         let html = '';
-
+        console.log(this.taskInput.value)
         html += `
                 <li class="list-group-item d-flex justify-content-between">
                     <div class="align-items-center">
                     <i class="far fa-circle"></i>
-                        <span class="ml-2">${this.input}</span> 
+                        <span class="ml-2">${this.input.value}</span> 
                     </div>
                     <div>
                         <i class="far fa-trash-alt"></i>
                     </div>
                 </li>
             `;
+            console.log(this.input)
+             this.listTask.innerHTML = html;
+     }
 
-            this.listTask.innerHTML = html;
-    }
-
-    iconChange(event){
+    iconClick(event){
         
         if(event.target.classList.contains('fa-trash-alt')){
             console.log(event.target.parentElement.parentElement)
@@ -54,7 +53,6 @@ class App{
             event.target.classList.remove('fa-check-circle')
         }
     }
-
 
 }
 
